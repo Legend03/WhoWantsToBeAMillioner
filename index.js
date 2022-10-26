@@ -448,6 +448,13 @@ function takeMoney() {
 }
 
 function finishGame(){
+  if(count !== maxCountQuestionsInTheGame) {
+    sound.pause();
+    sound = new Audio();
+    sound.src = "./Sounds/finishGame.mp3";
+    sound.play();
+  }
+
   for (let but of answerButton) {
     but.disabled = true;
   }
@@ -465,11 +472,7 @@ function finishGame(){
   
   if(count === maxCountQuestionsInTheGame)
     text.textContent = "Поздравляем! Вы стали миллионером!!!\nХотите сыграть ещё?";
-  else{    
-    sound.pause();
-    sound = new Audio();
-    sound.src = "./Sounds/finishGame.mp3";
-    sound.play();
+  else{
     text.textContent = "Поздравяем, вы заработали " + arrayMoney[count - 1] + " рублей!\nХотите сыграть ещё?";
   }
 }
