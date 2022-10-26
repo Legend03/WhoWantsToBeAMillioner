@@ -1,0 +1,399 @@
+.start{
+    display: table-cell;
+    height: 900px;
+    width: 1900px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.start button{
+    color: yellow;
+    padding: 20px 30px;
+    flex-basis: calc(100% / 2 - 50px);
+    background-color: #2F73B6;
+    font-size: 32px;
+    border: 2px solid whitesmoke;
+    border-radius: 100px;
+    cursor: pointer;
+}
+
+body{
+    background: linear-gradient(to right, MidnightBlue, black 45% 55%, MidnightBlue);
+    
+}
+
+.main {
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-between;
+}
+
+#mainIcon{
+    text-align: center;
+    width: 60%;
+}
+
+#mainIcon img{
+    width: 300px;
+    border-radius: 150px;
+    border: 3px solid yellow;
+}
+
+#bonusIcon{
+    width: 206px;
+}
+
+#bonusIcon img{
+    border-radius: 100px;
+    border: 3px solid yellow;
+    background-color: cornflowerblue;
+    width: 60px;
+    box-shadow: 0 0 7px #666;
+    cursor: pointer;
+}
+
+#moneyTree{
+    color: yellow;
+    font-size: 32px;
+    width: 206px;
+    text-align: center;
+}
+
+table{
+    text-align: center;
+    margin: 0 auto;
+}
+
+th{
+    padding-bottom: 15px;
+}
+
+td{
+    border-radius: 20px;
+    padding: 0 10px;
+}
+
+#question{
+    text-align: justify;
+    position: relative;
+    background-color: #2F73B6;    
+    overflow-wrap: break-word;    
+    color: white;
+    font-size: 32px;
+    max-width: 1350px;
+    height: 115px;
+    padding: 10px 30px;
+    margin: 100px auto;
+    margin-top: 15px;
+    margin-bottom: 80px;
+    border: 2px solid yellow; 
+    border-radius: 100px;
+    overflow-x: overlay;
+}
+
+p{
+    margin: auto;
+}
+
+#question::-webkit-scrollbar{
+    width: 0;
+}
+
+.wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    max-width: 1200px;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+.wrapper button p{
+    color: yellow;
+}
+
+.wrapper button {
+    padding: 20px 30px;
+    text-align: left;
+    flex-basis: calc(100% / 2 - 50px);
+    background-color: #2F73B6;    
+    overflow-wrap: break-word;
+    font-size: 32px;
+    border: 2px solid whitesmoke;
+    border-radius: 100px;
+    cursor: pointer;
+}
+
+.modal-content button{
+    margin: 0 10px;
+    margin-bottom: 20px;
+    padding: 10px;
+    text-align: justify;
+    flex-basis: calc(100% / 2 - 50px);
+    background-color: #2F73B6;    
+    overflow-wrap: break-word;    
+    color: white;
+    font-size: 24px;
+    border: 2px solid yellow;
+    border-radius: 100px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+#takeMoney button{
+    padding: 5px 10px;
+    text-align: justify;
+    flex-basis: calc(100% / 2 - 50px);
+    background-color: #2F73B6;    
+    overflow-wrap: break-word;    
+    color: white;
+    font-size: 32px;
+    border: 2px solid yellow;
+    border-radius: 100px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+@keyframes blink{
+    0%, 100% {
+        background: #2F73B6;
+      }
+      50%{
+        background: yellow;
+      }
+  }
+@keyframes staticGreen{
+    0% {
+        background: #2F73B6;
+      }
+    100% {
+        background: green;
+      }
+  }
+
+@keyframes staticRed{
+    0% {
+        background: #2F73B6;
+      }
+    100% {
+        background: red;
+      }
+}
+
+#answerOption{
+    text-align: left;
+    padding: 20px;
+    color: white;
+}
+
+@media screen and (max-width: 1070px) {
+    .main {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px
+    }
+
+    button {
+        flex-basis: 100%;
+    }
+
+    #mainIcon {
+        order: -1;
+    }
+}
+
+@media screen and (max-width: 1500px){    
+    #question{
+        margin: 50px;
+    }
+}
+
+.text {
+    position: absolute;
+    top: 30px;
+    left: 750px;
+}
+
+.modal {
+    display: none; /* Скрыто по умолчанию */
+    position: fixed; /* Оставаться на месте */
+    z-index: 1; /* Сидеть на вершине */
+    left: 0;
+    top: 0; 
+    width: 100%; /* Полная ширина */
+    height: 100%; /* Полная высота */
+    background-color: rgb(0,0,0); /* Цвет запасной вариант */
+    background-color: rgba(0,0,0,0.4); /* Черный с непрозрачностью */
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Модальное содержание/коробка */
+.modal-content{    
+    display: inline-block;
+    background: linear-gradient(to right, MidnightBlue, black 45% 55%, MidnightBlue);
+    color: white;
+    margin-top: 350px;
+    align-self: auto;
+    max-width: 700px;
+    max-height: 700px; /* Может быть больше или меньше, в зависимости от размера экрана */
+    border: solid 3px yellow;
+}
+
+.modal-content-chart{    
+    display: inline-block;
+    background: MidnightBlue;
+    color: white;
+    margin-top: 250px;
+    align-self: auto;
+    max-width: 700px;
+    max-height: 700px; /* Может быть больше или меньше, в зависимости от размера экрана */
+    border: solid 3px yellow;
+}
+
+/* Кнопка закрытия */
+.close {
+    margin: auto;
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    
+}
+
+.close:hover,
+.close:focus {
+  color: red;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#chart{
+    font-size: 24px;
+    width: 20em;
+    height: 20em;
+    background: linear-gradient(to right, MidnightBlue, black 45% 55%, MidnightBlue);
+    display: flex;
+    align-items: flex-end;
+}
+#chart > * {
+    background: #2F73B6;
+    flex: 1;
+    margin: .5em;
+}
+
+.answer{
+    display: inline-flex;
+    font-size: 28px;
+    padding: 25px;
+    height: 50px;
+    margin-top: 25px;
+    margin-left: 20px;
+}
+    
+.gift{
+    height: 90px;
+    font-size: 28px;
+    padding-top: 50px;
+    margin: 0 20px;
+}
+
+.message{
+    height: 90px;
+    font-size: 28px;
+    padding-top: 50px;
+    margin: 0 20px;
+}
+
+#finishGame{
+    display: none; /* Скрыто по умолчанию */
+    position: fixed; /* Оставаться на месте */
+    z-index: 1; /* Сидеть на вершине */
+    left: 0;
+    top: 0;
+    width: 100%; /* Полная ширина */
+    height: 100%; /* Полная высота */
+    background-color: rgb(0,0,0); /* Цвет запасной вариант */
+    background-color: rgba(0,0,0,0.4); /* Черный с непрозрачностью */
+    text-align: center;
+    vertical-align: middle;
+}
+
+.preloader {
+    /*фиксированное позиционирование*/
+    position: fixed;
+    /* координаты положения */
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    /* фоновый цвет элемента */
+    background: linear-gradient(to right, MidnightBlue, black 45% 55%, MidnightBlue);
+    /* размещаем блок над всеми элементами на странице (это значение должно быть больше, чем у любого другого позиционированного элемента на странице) */
+    z-index: 1001;
+  }
+  
+  .preloader__row {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    width: 70px;
+    height: 70px;
+    margin-top: -35px;
+    margin-left: -35px;
+    text-align: center;
+    animation: preloader-rotate 2s infinite linear;
+  }
+  
+  .preloader__item {
+    position: absolute;
+    display: inline-block;
+    top: 0;
+    background-color: #2F73B6;
+    border-radius: 100%;
+    width: 35px;
+    height: 35px;
+    animation: preloader-bounce 2s infinite ease-in-out;
+  }
+  
+  .preloader__item:last-child {
+    top: auto;
+    bottom: 0;
+    animation-delay: -1s;
+  }
+  
+  @keyframes preloader-rotate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes preloader-bounce {
+  
+    0%,
+    100% {
+      transform: scale(0);
+    }
+  
+    50% {
+      transform: scale(1);
+    }
+  }
+  
+  .loaded_hiding .preloader {
+    transition: 0.3s opacity;
+    opacity: 0;
+  }
+  
+  .loaded .preloader {
+    display: none;
+  }
+
+@-webkit-keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
