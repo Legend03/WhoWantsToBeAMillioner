@@ -1,7 +1,7 @@
 .start{
     display: table-cell;
-    height: 900px;
-    width: 1900px;
+    height: 100vh;
+    width: 100vw;
     text-align: center;
     vertical-align: middle;
 }
@@ -11,7 +11,7 @@
     padding: 20px 30px;
     flex-basis: calc(100% / 2 - 50px);
     background-color: #2F73B6;
-    font-size: 32px;
+    font-size: calc(var(--index) * 1.5);
     border: 2px solid whitesmoke;
     border-radius: 100px;
     cursor: pointer;
@@ -19,7 +19,7 @@
 
 body{
     background: linear-gradient(to right, MidnightBlue, black 45% 55%, MidnightBlue);
-    
+    width: 100vw;
 }
 
 .main {
@@ -30,42 +30,33 @@ body{
 
 #mainIcon{
     text-align: center;
-    width: 60%;
 }
 
 #mainIcon img{
-    width: 300px;
-    border-radius: 150px;
-    border: 3px solid yellow;
-}
-
-#bonusIcon{
-    width: 206px;
+    width: calc(var(--index) * 12);;
+    border-radius: calc(var(--index) * 6);;
+    border: 2px solid yellow;
 }
 
 #bonusIcon img{
     border-radius: 100px;
-    border: 3px solid yellow;
+    border: 2px solid yellow;
     background-color: cornflowerblue;
-    width: 60px;
+    width: calc(var(--index) * 2);;
     box-shadow: 0 0 7px #666;
     cursor: pointer;
 }
 
 #moneyTree{
+    margin-right: 40px;
     color: yellow;
-    font-size: 32px;
-    width: 206px;
+    font-size: calc(var(--index) * 1.2);
     text-align: center;
 }
 
 table{
     text-align: center;
     margin: 0 auto;
-}
-
-th{
-    padding-bottom: 15px;
 }
 
 td{
@@ -79,13 +70,11 @@ td{
     background-color: #2F73B6;    
     overflow-wrap: break-word;    
     color: white;
-    font-size: 32px;
-    max-width: 1350px;
-    height: 115px;
+    font-size: calc(var(--index) * 1.2);
+    width: calc(var(--index) *);
+    height: calc(var(--index) * 5);
     padding: 10px 30px;
-    margin: 100px auto;
-    margin-top: 15px;
-    margin-bottom: 80px;
+    margin: 50px calc(var(--index));
     border: 2px solid yellow; 
     border-radius: 100px;
     overflow-x: overlay;
@@ -102,10 +91,10 @@ p{
 .wrapper {
     display: flex;
     flex-wrap: wrap;
-    gap: 50px;
-    max-width: 1200px;
-    justify-content: space-between;
-    margin: 0 auto;
+    padding: 0 20px;
+    gap: calc(var(--index) * 2);
+    width: calc(var(--index) *);
+    margin: 0 calc(var(--index));
 }
 
 .wrapper button p{
@@ -113,13 +102,13 @@ p{
 }
 
 .wrapper button {
-    padding: 20px 30px;
+    padding: 10px 10px;
     text-align: left;
     flex-basis: calc(100% / 2 - 50px);
     background-color: #2F73B6;    
     overflow-wrap: break-word;
-    font-size: 32px;
-    border: 2px solid whitesmoke;
+    font-size: calc(var(--index));
+    border: 2px solid yellow;
     border-radius: 100px;
     cursor: pointer;
 }
@@ -147,7 +136,7 @@ p{
     background-color: #2F73B6;    
     overflow-wrap: break-word;    
     color: white;
-    font-size: 32px;
+    font-size: calc(var(--index));
     border: 2px solid yellow;
     border-radius: 100px;
     margin-top: 10px;
@@ -186,7 +175,7 @@ p{
     color: white;
 }
 
-@media screen and (max-width: 1070px) {
+/*@media screen and (max-width: 1070px) {
     .main {
         flex-direction: column;
         align-items: center;
@@ -206,7 +195,7 @@ p{
     #question{
         margin: 50px;
     }
-}
+}*/
 
 .text {
     position: absolute;
@@ -393,7 +382,12 @@ p{
     0% {opacity: 0;}
     100% {opacity: 1;}
 }
+
 @keyframes fadeIn {
     0% {opacity: 0;}
     100% {opacity: 1;}
+}
+
+:root{
+    --index: calc(1vw + 1vh)
 }

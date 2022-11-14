@@ -33,10 +33,10 @@ function startGame() {
   sound.preload = "metadata";
   sound.src = "./Sounds/startGame.mp3";
   sound.play();
-  go();
+  pressButtonPlay();
 }
 
-function go() {
+function pressButtonPlay() {
   count = 0;
   let body = document.querySelector("body");
   body.innerHTML = `
@@ -72,46 +72,43 @@ function go() {
             
             <div id="mainIcon">
                 <img>
-                <div id="question">
-            
-                </div>
             </div>
 
             <div id="moneyTree">
 
                 <table>
                     <th>
-                        ПРИЗ
+                        Оценка
                     </th>
                     <tr>
-                        <td>1 000 000</td>
+                        <td>10</td>
                     </tr>
                     <tr>
-                        <td>500 000</td>
+                        <td>9</td>
                     </tr>
                     <tr>
-                        <td>200 000</td>
+                        <td>8</td>
                     </tr>
                     <tr>
-                        <td>100 000</td>
+                        <td>7</td>
                     </tr>
                     <tr>
-                        <td>50 000</td>
+                        <td>6</td>
                     </tr>
                     <tr>
-                        <td>20 000</td>
+                        <td>5</td>
                     </tr>
                     <tr>
-                        <td>10 000</td>
+                        <td>4</td>
                     </tr>
                     <tr>
-                        <td>5 000</td>
+                        <td>3</td>
                     </tr>
                     <tr>
-                        <td>2 000</td>
+                        <td>2</td>
                     </tr>
                     <tr>
-                        <td>1 000</td>
+                        <td>1</td>
                     </tr>
                 </table>
 
@@ -122,6 +119,10 @@ function go() {
                 </div>
 
             </div>
+        </div>
+        
+        <div id="question">
+            
         </div>
 
         <div class="wrapper">
