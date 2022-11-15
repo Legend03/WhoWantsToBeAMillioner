@@ -497,13 +497,13 @@ function callToFriend(bonus) {
   modal.style.display = "block";
 
   let IndexTrueButton;
-  let IndexFalseButton
+  let IndexFalseButton;
   for (let i = 0; i < answerButton.length; i++) {
     if (IsTrueAnswer(answerButton[i])) {
       IndexTrueButton = i;
     }
     else{
-      IndexFalseButton = i
+      IndexFalseButton = i;
     }
   }
 
