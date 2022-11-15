@@ -497,18 +497,31 @@ function callToFriend(bonus) {
   modal.style.display = "block";
 
   let IndexTrueButton;
+  let IndexFalseButton
   for (let i = 0; i < answerButton.length; i++) {
     if (IsTrueAnswer(answerButton[i])) {
       IndexTrueButton = i;
-      break;
+    }
+    else{
+      IndexFalseButton = i
     }
   }
 
-  answer.textContent =
+  if(Math.floor(Math.random() * 5) < 1){
+    answer.textContent =
+    "Друг думает, что ответ: " +
+    answerButton[IndexFalseButton].textContent.slice(0, 1);
+    bonus.onclick = "";
+    bonus.style.opacity = ".5";
+  }
+  else{
+    answer.textContent =
     "Друг думает, что ответ: " +
     answerButton[IndexTrueButton].textContent.slice(0, 1);
-  bonus.onclick = "";
-  bonus.style.opacity = ".5";
+    bonus.onclick = "";
+    bonus.style.opacity = ".5";
+  }
+  
 }
 
 function takeMoney() {
