@@ -2,7 +2,7 @@ let arrayQuestions;
 let responseData;
 let textQuestion;
 let textButtonAnswerOptions;
-let moneyTree;
+let markTree;
 let answerButton;
 const maxCountQuestionsInTheGame = 10;
 let count = 0;
@@ -11,7 +11,7 @@ let sound = new Audio();
 const requestData = async () => {
   try {
     const response = await fetch(
-      "https://api.jsonbin.io/v3/b/6358f1932b3499323beafa99/latest",
+      "https://api.jsonbin.io/v3/b/6372c37d65b57a31e6b7a7e2",
       {
         headers: {
           "Content-Type": "application/json",
@@ -20,7 +20,6 @@ const requestData = async () => {
         },
       }
     );
-    console.log(response);
     responseData = await response.json();
   } catch (error) {
     console.log(error);
@@ -33,10 +32,10 @@ function startGame() {
   sound.preload = "metadata";
   sound.src = "./Sounds/startGame.mp3";
   sound.play();
-  pressButtonPlay();
+  GoToPlay();
 }
 
-function pressButtonPlay() {
+function GoToPlay() {
   count = 0;
   let body = document.querySelector("body");
   body.innerHTML = `
@@ -74,7 +73,7 @@ function pressButtonPlay() {
                 <img>
             </div>
 
-            <div id="moneyTree">
+            <div id="markTree">
 
                 <table>
                     <th>
@@ -161,7 +160,7 @@ function pressButtonPlay() {
             
             <div class="modal-content">               
                 <p class="message"></p>
-                <button onclick="go()">Заново</button>
+                <button onclick="GoToPlay()">Заново</button>
                 <button onclick="cancel()">Отмена</button>
             </div>
 
@@ -171,11 +170,8 @@ function pressButtonPlay() {
     answerButton = document.querySelectorAll(".wrapper button");
     textQuestion = document.querySelector("#question");
     textButtonAnswerOptions = document.querySelectorAll("#answerOption");
-    moneyTree = document.querySelectorAll("td");
-    arrayQuestions = indexesQuestions(
-      Object.keys(responseData.question).length - 1,
-      maxCountQuestionsInTheGame
-    );
+    markTree = document.querySelectorAll("td");
+    arrayQuestions = GetIndexesQuestions();
 
     // Вставка картинок на страницу
     logoImg.src = responseData.images.logo;
@@ -184,10 +180,10 @@ function pressButtonPlay() {
     }
 
     //Вставка текста вопроса и вариантов ответа
-    textQuestion.textContent = responseData.question[arrayQuestions[0]];
+    textQuestion.textContent = responseData.question.easy[arrayQuestions[0]];
     let temp = 0;
     for (let button of textButtonAnswerOptions) {
-      button.textContent = responseData.answerOptions[arrayQuestions[0]][temp];
+      button.textContent = responseData.answerOptions.easy[arrayQuestions[0]][temp];
       temp++;
     }
   }, 3000);
@@ -225,12 +221,12 @@ function giveAnswer(button) {
         but.style.background = "#2F73B6";
       }
       if (count !== 0)
-        moneyTree[moneyTree.length - count].style.background = "";
+        markTree[markTree.length - count].style.background = "";
       count++;
-      moneyTree[moneyTree.length - count].style.background = "green";
+      markTree[markTree.length - count].style.background = "green";
       if (count !== maxCountQuestionsInTheGame) nextQuestion();
       else {
-        moneyTree[moneyTree.length - count].style.animation =
+        markTree[markTree.length - count].style.animation =
           "staticGreen 1s linear infinite";
         sound.pause();
         sound = new Audio();
@@ -258,7 +254,7 @@ function giveAnswer(button) {
       let takeMoney = document.querySelector("#takeMoney button");
       takeMoney.disabled = true;
       if (count !== 0)
-        moneyTree[moneyTree.length - count].style.animation =
+        markTree[markTree.length - count].style.animation =
           "staticRed 1s linear infinite";
       setTimeout(() => {
         loseGame();
@@ -268,12 +264,38 @@ function giveAnswer(button) {
 }
 
 function IsTrueAnswer(button) {
-  if (
-    button.textContent.slice(3) ===
-    responseData.rightAnswer[arrayQuestions[count]]
-  )
-    return true;
-  else return false;
+  if (count < 4){
+    if (
+      button.textContent.slice(3) ===
+      responseData.rightAnswer.easy[arrayQuestions[count]]
+    )
+      return true;
+    else return false;
+  }
+  else if (count < 6){
+    if (
+      button.textContent.slice(3) ===
+      responseData.rightAnswer.normal[arrayQuestions[count]]
+    )
+      return true;
+    else return false;
+  }
+  else if (count < 8){
+    if (
+      button.textContent.slice(3) ===
+      responseData.rightAnswer.medium[arrayQuestions[count]]
+    )
+      return true;
+    else return false;
+  }
+  else if (count < 10){
+    if (
+      button.textContent.slice(3) ===
+      responseData.rightAnswer.hard[arrayQuestions[count]]
+    )
+      return true;
+    else return false;
+  }
 }
 
 function nextQuestion() {
@@ -281,20 +303,67 @@ function nextQuestion() {
   sound = new Audio();
   sound.src = "./Sounds/forThinking.mp3";
   sound.play();
-  textQuestion.textContent = responseData.question[arrayQuestions[count]];
-  let temp = 0;
-  for (let button of textButtonAnswerOptions) {
-    button.textContent =
-      responseData.answerOptions[arrayQuestions[count]][temp];
-    temp++;
+
+  if (count < 4){
+    textQuestion.textContent = responseData.question.easy[arrayQuestions[count]];
+    let temp = 0;
+    for (let button of textButtonAnswerOptions) {
+      button.textContent = responseData.answerOptions.easy[arrayQuestions[count]][temp];
+      temp++;
+    }
   }
+  else if (count < 6){
+    textQuestion.textContent = responseData.question.normal[arrayQuestions[count]];
+    let temp = 0;
+    for (let button of textButtonAnswerOptions) {
+      button.textContent = responseData.answerOptions.normal[arrayQuestions[count]][temp];
+      temp++;
+    }
+  }
+  else if (count < 8){
+    textQuestion.textContent = responseData.question.medium[arrayQuestions[count]];
+    let temp = 0;
+    for (let button of textButtonAnswerOptions) {
+      button.textContent = responseData.answerOptions.medium[arrayQuestions[count]][temp];
+      temp++;
+    }
+  }
+  else if (count < 10){
+    textQuestion.textContent = responseData.question.hard[arrayQuestions[count]];
+    let temp = 0;
+    for (let button of textButtonAnswerOptions) {
+      button.textContent = responseData.answerOptions.hard[arrayQuestions[count]][temp];
+      temp++;
+    }
+  }
+  
 }
 
-function indexesQuestions(max, countOfQuestion) {
-  let arrayOfIndexes = new Set();
-  while (arrayOfIndexes.size < countOfQuestion)
-    arrayOfIndexes.add(Math.floor(Math.random() * max));
-  return Array.from(arrayOfIndexes);
+function GetIndexesQuestions() {
+  let arrayOfIndexes = [];
+  let easyQuestion = responseData.question.easy;
+  let normalQuestion = responseData.question.normal;
+  let mediumQuestion = responseData.question.medium;
+  let hardQuestion = responseData.question.hard;
+
+  for(let i = 0; i < 4; i++){
+    arrayOfIndexes.push(Math.floor(Math.random() * easyQuestion.length))
+  }
+  for(let i = 0; i < 2; i++){
+    arrayOfIndexes.push(Math.floor(Math.random() * normalQuestion.length))
+  }  
+  for(let i = 0; i < 2; i++){
+    arrayOfIndexes.push(Math.floor(Math.random() * mediumQuestion.length))
+  }  
+  for(let i = 0; i < 2; i++){
+    arrayOfIndexes.push(Math.floor(Math.random() * hardQuestion.length))
+  }
+  console.log(arrayOfIndexes);
+  return arrayOfIndexes;
+  // let arrayOfIndexes = new Set();
+  // while (arrayOfIndexes.size < maxCountQuestionsInTheGame)
+  //   arrayOfIndexes.add(Math.floor(Math.random() * maxCountQuestionsInTheGame));
+  // return Array.from(arrayOfIndexes);
 }
 
 function fiftyOnFifty(bonus) {
@@ -464,17 +533,14 @@ function finishGame(){
     but.onclick = "";
   }
   
-  let arrayMoney = [
-    1000, 2000, 5000, 10000, 20000, 50000, 100000, 200000, 500000, 1000000,
-  ];    
   let modal = document.getElementById("finishGame");
   let text = document.querySelector(".message");
   modal.style.display = "block";
   
   if(count === maxCountQuestionsInTheGame)
-    text.textContent = "Поздравляем! Вы стали миллионером!!!\nХотите сыграть ещё?";
+    text.textContent = "Поздравляем! Вы прошли тест на отлично!!!\nХотите сыграть ещё?";
   else{
-    text.textContent = "Поздравяем, вы заработали " + arrayMoney[count - 1] + " рублей!\nХотите сыграть ещё?";
+    text.textContent = "Поздравяем, вы заработали " + count + " балл(ов)!\nХотите сыграть ещё?";
   }
 }
 
