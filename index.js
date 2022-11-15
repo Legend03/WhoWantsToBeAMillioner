@@ -345,19 +345,40 @@ function GetIndexesQuestions() {
   let normalQuestion = responseData.question.normal;
   let mediumQuestion = responseData.question.medium;
   let hardQuestion = responseData.question.hard;
+  let temp = new Set();
 
-  for(let i = 0; i < 4; i++){
-    arrayOfIndexes.push(Math.floor(Math.random() * easyQuestion.length))
+  while(temp.size < 4){
+    temp.add(Math.floor(Math.random() * easyQuestion.length));
   }
-  for(let i = 0; i < 2; i++){
-    arrayOfIndexes.push(Math.floor(Math.random() * normalQuestion.length))
-  }  
-  for(let i = 0; i < 2; i++){
-    arrayOfIndexes.push(Math.floor(Math.random() * mediumQuestion.length))
-  }  
-  for(let i = 0; i < 2; i++){
-    arrayOfIndexes.push(Math.floor(Math.random() * hardQuestion.length))
+  temp.forEach(element => {
+    arrayOfIndexes.push(element);    
+  });
+  temp.clear();
+
+  while(temp.size < 2){
+    temp.add(Math.floor(Math.random() * normalQuestion.length));
   }
+  temp.forEach(element => {
+    arrayOfIndexes.push(element);    
+  });
+  temp.clear();
+
+  while(temp.size < 2){
+    temp.add(Math.floor(Math.random() * mediumQuestion.length));
+  }
+  temp.forEach(element => {
+    arrayOfIndexes.push(element);    
+  });
+  temp.clear();
+
+  while(temp.size < 2){
+    temp.add(Math.floor(Math.random() * hardQuestion.length));
+  }
+  temp.forEach(element => {
+    arrayOfIndexes.push(element);    
+  });
+  temp.clear();
+
   console.log(arrayOfIndexes);
   return arrayOfIndexes;
   // let arrayOfIndexes = new Set();
