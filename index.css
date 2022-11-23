@@ -47,7 +47,7 @@ body {
 }
 
 #bonusIcon {
-  width: 200px;
+  width: calc(var(--index) * 7);
   margin-left: 20px;
 }
 
@@ -55,7 +55,7 @@ body {
   border-radius: 100px;
   border: 2px solid white;
   background-color: cornflowerblue;
-  width: calc(var(--index) * 2.5);
+  width: calc(var(--index) * 2.0);
   box-shadow: 0 0 7px #666;
   cursor: pointer;
 }

@@ -8,6 +8,7 @@ const maxCountQuestionsInTheGame = 10;
 let count = 0;
 let sound = new Audio();
 
+//Получение данных из JSON-файла
 const requestData = async () => {
   try {
     const response = await fetch(
@@ -27,6 +28,7 @@ const requestData = async () => {
 };
 requestData();
 
+//Запуск игры по нажатию на кнопку "Играть"
 function startGame() {
   let sound = new Audio();
   sound.preload = "metadata";
@@ -35,6 +37,7 @@ function startGame() {
   GoToPlay();
 }
 
+//
 function GoToPlay() {
   count = 0;
   let body = document.querySelector("body");
@@ -381,10 +384,6 @@ function GetIndexesQuestions() {
 
   console.log(arrayOfIndexes);
   return arrayOfIndexes;
-  // let arrayOfIndexes = new Set();
-  // while (arrayOfIndexes.size < maxCountQuestionsInTheGame)
-  //   arrayOfIndexes.add(Math.floor(Math.random() * maxCountQuestionsInTheGame));
-  // return Array.from(arrayOfIndexes);
 }
 
 function fiftyOnFifty(bonus) {
